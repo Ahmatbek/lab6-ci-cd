@@ -1,0 +1,12 @@
+FROM python:3.11-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY config.py app.py ./
+ENV APP_ENV=production
+ENV DEBUG=false
+ENV FLASK_APP=app.py
+EXPOSE 5000
+RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+USER appuser
+CMD ["python", "app.py"]

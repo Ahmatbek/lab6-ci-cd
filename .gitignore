@@ -1,4 +1,8 @@
-.terraform/
-*.tfstate*
-.DS_Store
 .env
+.env.development
+.env.production
+.env.local
+*.env
+__pycache__/
+*.pyc
+.DS_Store

@@ -1,0 +1,5 @@
+# Use medium image
+-P ubuntu-latest=catthehacker/ubuntu:act-latest
+# Verbose output for debugging
+--verbose
+--container-architecture linux/amd64

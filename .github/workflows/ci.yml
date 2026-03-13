@@ -13,10 +13,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
@@ -27,10 +27,12 @@ jobs:
 
       - name: Run flake8
         run: |
+          cd docker-labs/lab6-ci-pipeline
           flake8 src/ tests/ --max-line-length=88 --extend-ignore=E203
 
       - name: Check code formatting
         run: |
+          cd docker-labs/lab6-ci-pipeline
           black --check src/ tests/
 
   test:
@@ -40,18 +42,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Install dependencies
         run: |
+          cd docker-labs/lab6-ci-pipeline
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run tests with coverage
         run: |
+          cd docker-labs/lab6-ci-pipeline
           pytest tests/ -v --cov=src --cov-report=term-missing
